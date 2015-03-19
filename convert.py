@@ -8,8 +8,19 @@ if (len(sys.argv) not in [3, 4]):
     exit()
 
 def scale(input, scale_factor):
+    # Raise lowest value to a minimum of 40m to allow some depth for lakes.
     input += 40
-    return input / 1024.0 * 2**16 * scale_factor
+
+    # Cities supports heights of 0-1024m.
+    input /= 1024.0
+
+    # Scale to 16-bit value.
+    input *= 2**16
+
+    # Scale with user provided scale factor to increase contrast.
+    input *= scale_factor
+
+    return input
 
 source_path = sys.argv[1]
 dest_path = sys.argv[2]
@@ -22,19 +33,22 @@ if len(sys.argv) == 4:
     except:
         print "Could not parse double value from %s. Defaulting to %d" % (scale_factor_str, scale_factor)
 
-file = open(source_path)
-content = [x.strip('\n') for x in file.readlines()]
-heights = content[6:]
 
 map = Image.new('I', (3000,3000))
+pixel_loc = 0
 
-heights_ints = [[scale(int(float(x)), scale_factor) for x in row.strip().split(" ")] for row in heights]
+with open(source_path) as file:
+    for line in file:
+        # Skip non-data rows. Data rows should start with 1-9.
+        if line[0] not in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
+            continue
 
-offset = 0
-for row in heights_ints:
-    for pixel in row:
-        map.putpixel((offset % 3000, offset / 3000), pixel)
-        offset += 1
+        heights = [scale(int(float(x)), scale_factor) for x in line.strip().split(" ")]
+        for height in heights:
+            x = pixel_loc % 3000
+            y = pixel_loc / 3000
+            map.putpixel((x, y), height)
+            pixel_loc += 1
 
 map.save(dest_path)
 
