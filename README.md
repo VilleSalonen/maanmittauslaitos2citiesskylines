@@ -7,8 +7,12 @@ First, head to https://tiedostopalvelu.maanmittauslaitos.fi/tp/kartta and downlo
 Unzip the downloaded grid cells and convert them to 16-bit grayscale images using the converter, for example like this:
 
 ```
-./convert.py N4324D.asc N4324D.png
+./convert.py N4324D.asc N4324D.png 3.4
 ```
+
+Last argument is an optional scale factor which can be used to increase contrast between the lowest and highest points.
+
+Conversion is quite slow. On my shared Linux host it takes about 50 seconds to convert a single grid cell. If you have ideas for optimization, please send me a pull request. I'm not that experienced Python programmer so I can use the help.
 
 If you want to join mutiple grid areas together, use your favorite image manipulation tools such as Photoshop, GIMP or ImageMagick.
 
