@@ -33,22 +33,17 @@ if len(sys.argv) == 4:
     except:
         print "Could not parse double value from %s. Defaulting to %d" % (scale_factor_str, scale_factor)
 
-
-map = Image.new('I', (3000,3000))
-pixel_loc = 0
-
 with open(source_path) as file:
+    result = []
+
     for line in file:
         # Skip non-data rows. Data rows should start with 1-9.
         if line[0] not in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
             continue
 
-        heights = [scale(int(float(x)), scale_factor) for x in line.strip().split(" ")]
-        for height in heights:
-            x = pixel_loc % 3000
-            y = pixel_loc / 3000
-            map.putpixel((x, y), height)
-            pixel_loc += 1
+        result += [scale(int(float(x)), scale_factor) for x in line.strip().split(" ")]
 
+map = Image.new('I', (3000,3000))
+map.putdata(result)
 map.save(dest_path)
 
