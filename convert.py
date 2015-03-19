@@ -9,8 +9,7 @@ if (len(sys.argv) != 3):
 
 def scale(input):
     input += 40
-    return input / 1024.0 * 2**16
-
+    return input / 1024.0 * 2**16 * 4
 
 source_path = sys.argv[1]
 dest_path = sys.argv[2]
