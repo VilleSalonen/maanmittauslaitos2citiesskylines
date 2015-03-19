@@ -1,5 +1,7 @@
 # Converter between Maanmittauslaitos data and Cities: Skylines
 
+![](http://i.imgur.com/64kXLc0.jpg)
+
 Simple tool for converting Maanmittauslaitos data to height map files understood by Cities: Skylines.
 
 First, head to https://tiedostopalvelu.maanmittauslaitos.fi/tp/kartta and download grid cells you want. Map is divided into grids so you might have to download multiple grid cells to get the whole area you want.
