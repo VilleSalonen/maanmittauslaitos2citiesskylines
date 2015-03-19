@@ -1,2 +1,3 @@
-# maanmittauslaitos2citiesskylines
-Converts Maanmittauslaitos' height maps to Cities: Skylines height map format
+# Converter between Maanmittauslaitos data and Cities: Skylines
+
+Simple tool for converting Maanmittauslaitos data to height map files understood by Cities: Skylines.
