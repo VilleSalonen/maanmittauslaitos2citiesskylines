@@ -14,8 +14,6 @@ Unzip the downloaded grid cells and convert them to 16-bit grayscale images usin
 
 Last argument is an optional scale factor which can be used to increase contrast between the lowest and highest points.
 
-Conversion is quite slow. On my shared Linux host it takes about 50 seconds to convert a single grid cell. If you have ideas for optimization, please send me a pull request. I'm not that experienced Python programmer so I can use the help.
+If you want to join multiple grid areas together, use your favorite image manipulation tools such as Photoshop, GIMP or ImageMagick.
 
-If you want to join mutiple grid areas together, use your favorite image manipulation tools such as Photoshop, GIMP or ImageMagick.
-
-Finally use these instructions to import height maps into Cities: Skylines map editor.
+Finally use these instructions to import height maps into Cities: Skylines map editor: http://www.skylineswiki.com/Map_Editor#Import_Heightmap
